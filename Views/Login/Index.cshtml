@@ -1,0 +1,35 @@
+﻿@model User
+
+<div id="card">
+    <div id="card-content">
+        <div id="card-title">
+            <h3 class="animate-charcter">StapleIT</h3>
+            <div class="underline-title"></div>
+        </div>
+        <form asp-action="login" class="form">
+            <label for="user-email" style="padding-top:22px">
+                &nbsp;Email
+            </label>
+            <input id="user-email" asp-for="EmailAdd" class="form-control" type="email" name="email" autocomplete="on" required />
+            <div class="form-border"></div>
+            <label for="user-password" style="padding-top:13px">
+                &nbsp;Password
+            </label>
+            <input id="user-password" asp-for="Password" class="form-control" type="password" name="password" required />
+            <div class="form-border"></div>
+            
+            <input id="submit-btn" type="submit" name="submit" value="LOGIN" />
+            <br>
+          
+            <p id="signup">Don't have an account? <a asp-action="CreateAccount" asp-controller="Login">SignUp</a></p>
+        </form>
+    </div>
+</div>
+@{
+    if (TempData["msg"]!=null)
+    {
+        <script>
+            alert('@TempData["msg"]')
+        </script>
+    }
+}

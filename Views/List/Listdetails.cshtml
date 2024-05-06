@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ListDetailViewModel>
+@section heads{
+    <link rel="stylesheet" href="~/Content/CreateList.css" />
+
+}
+
+<navbar>
+    <div id="header">
+        <div class="waviy">
+            <span style="--i:1">S</span>
+            <span style="--i:2">T</span>
+            <span style="--i:3">A</span>
+            <span style="--i:4">P</span>
+            <span style="--i:5">L</span>
+            <span style="--i:6">E</span>
+            <span style="--i:7">I</span>
+            <span style="--i:8">T</span>
+            <span style="--i:8">.</span>
+            <a asp-action="Index" asp-controller="Login" style="text-transform: uppercase; padding-top: 20px; color: #fff;" class="pull-right"><b>Logout</b></a>
+        </div>
+
+
+    </div>
+    <div class="underline-title"></div>
+    <ul id="nav" class="nav nav-tabs">
+        <li>
+            <a asp-action="Index" asp-controller="Home">Home</a>
+        </li>
+        <li class="active">
+            <a asp-action="Index" class="active" asp-controller="List"><b>Lists</b></a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Group">Groups</a>
+        </li>
+
+    </ul>
+</navbar>
+<br>
+<div class="container-fluid">
+    <div style="display: flex; align-items: center;">
+        <a asp-action="Index" class="btn btn-info"><span class="glyphicon glyphicon-arrow-left"></span></a>
+        @if (Model.Any())
+        {
+            <h1 style="margin-left: 10px;margin-bottom: 25px;">@Model.FirstOrDefault().ListName</h1>
+        }
+    </div>
+    <table class="table table-condensed table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(a=>v.Itemname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(a=>v.Quantity)
+                    </td>
+
+                    <td>
+                        <a asp-action="DetailsDelete" asp-route-id=@v.ListDetailID asp-controller="List" data-toggle="tooltip" data-placement="right" title="Delete"><i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

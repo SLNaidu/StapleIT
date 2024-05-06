@@ -1,0 +1,99 @@
+﻿@model ItemSearchViewModel
+@section heads{
+    <link rel="stylesheet" href="~/Content/CreateList.css" />
+
+}
+<navbar>
+    <div id="header">
+        <div class="waviy">
+            <span style="--i:1">S</span>
+            <span style="--i:2">T</span>
+            <span style="--i:3">A</span>
+            <span style="--i:4">P</span>
+            <span style="--i:5">L</span>
+            <span style="--i:6">E</span>
+            <span style="--i:7">I</span>
+            <span style="--i:8">T</span>
+            <span style="--i:8">.</span>
+            <a asp-action="Index" asp-controller="Login" style="text-transform: uppercase; padding-top: 20px; color: #fff;" class="pull-right"><b>Logout</b></a>
+        </div>
+            
+        
+    </div>
+    <div class="underline-title"></div>
+    <ul id="nav" class="nav nav-tabs">
+        <li class="active">
+            <a asp-action="Index" class="active" asp-controller="Home"><b>Home</b></a>
+        </li>
+        <li class="inactive">
+            <a asp-action="Index" asp-controller="List">Lists</a>
+        </li>
+        <li>
+            <a asp-action="Index"  asp-controller="Group">Groups</a>
+        </li>
+        
+    </ul>
+</navbar>
+
+    <br>
+
+    <div class="container-fluid">
+    <div class="module-heading">
+
+        <span class="module-header-title">
+            Search Items
+        </span>
+    </div>
+    <form asp-action="Search">
+        <div class="form-group">
+            <input asp-for="Items.ItemName" class="form-control" placeholder="Enter the name of the Item" />
+            <br>
+            <a asp-action="Index" id="cancelbtn" class="btn btn-primary">Cancel</a>
+            &nbsp;
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+    </form>
+    <div class="text-danger">@Model.SearchError</div>
+    @if (Model.ResultList.Count > 0)
+    {
+        <table class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Items Found
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var v in Model.ResultList)
+                {
+                    <tr>
+                        <td>
+                            @v.ItemName
+                        </td>
+                        <td>
+                            @v.Description
+                        </td>
+                        
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Add &nbsp;
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @foreach (var l in Model.rList)
+                                    {
+                                        <li><a asp-action="AddtoList" asp-route-id="@v.ItemId" asp-route-ListId="@l.ListId">@l.ListName</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

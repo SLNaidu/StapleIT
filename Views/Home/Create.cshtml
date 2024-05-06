@@ -1,0 +1,61 @@
+﻿@model Item
+@section heads{
+    <link rel="stylesheet" href="~/Content/CreateList.css" />
+   
+}
+
+<navbar>
+    <div id="header">
+        <div class="waviy">
+            <span style="--i:1">S</span>
+            <span style="--i:2">T</span>
+            <span style="--i:3">A</span>
+            <span style="--i:4">P</span>
+            <span style="--i:5">L</span>
+            <span style="--i:6">E</span>
+            <span style="--i:7">I</span>
+            <span style="--i:8">T</span>
+            <span style="--i:8">.</span>
+            <a asp-action="Index" asp-controller="Login" style="text-transform: uppercase; padding-top: 20px; color: #fff;" class="pull-right"><b>Logout</b></a>
+        </div>
+
+
+    </div>
+    <div class="underline-title"></div>
+    <ul id="nav" class="nav nav-tabs">
+        <li>
+            <a asp-action="Index" asp-controller="Home"><b>Home</b></a>
+        </li>
+        <li class="active">
+            <a asp-action="Index" class="active" asp-controller="List">Lists</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Group">Groups</a>
+        </li>
+
+    </ul>
+</navbar>
+<br>
+<div class="container-fluid"
+<div class="row">
+    <div class="col-md-4">
+         <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="ItemName" class="control-label">What is the staple you wish to add?</label>
+                <input asp-for="ItemName" class="form-control" />
+                <span asp-validation-for="ItemName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Describe the staple</label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+             <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+         </form>
+    </div>
+</div>
+</div>

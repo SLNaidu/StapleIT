@@ -1,0 +1,83 @@
+﻿@model AddList
+@section heads{
+    <link rel="stylesheet" href="~/Content/CreateList.css" />
+
+}
+<navbar>
+    <div id="header">
+        <div class="waviy">
+            <span style="--i:1">S</span>
+            <span style="--i:2">T</span>
+            <span style="--i:3">A</span>
+            <span style="--i:4">P</span>
+            <span style="--i:5">L</span>
+            <span style="--i:6">E</span>
+            <span style="--i:7">I</span>
+            <span style="--i:8">T</span>
+            <span style="--i:8">.</span>
+            <a asp-action="Index" asp-controller="Login" style="text-transform: uppercase; padding-top: 20px; color: #fff;" class="pull-right"><b>Logout</b></a>
+        </div>
+
+
+    </div>
+    <div class="underline-title"></div>
+    <ul id="nav" class="nav nav-tabs">
+        <li class="active">
+            <a asp-action="Index" class="active" asp-controller="Home"><b>Home</b></a>
+        </li>
+        <li class="inactive">
+            <a asp-action="Index" asp-controller="List">Lists</a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Group">Groups</a>
+        </li>
+
+    </ul>
+</navbar>
+<br>
+<div class="container-fluid">
+    <div>
+        <h4>Add To <b>@Model.Lists.ListName</b></h4>
+        <hr />
+        <form asp-action="AddtoList">
+        <dl class="row">
+            <dt class="col-sm-2">
+                Item Name
+            </dt>
+            <dd class="col-sm-10">
+                    <input type="hidden" asp-for="@Model.Item.ItemName" />
+                           @Model.Item.ItemName
+            </dd>
+            <dt class="col-sm-2">
+               Description
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Item.Description
+            </dd>
+                <dt class="col-sm-2">
+                    Quantity
+                </dt>
+                <br>
+                <dd class="col-sm-10">
+                    <input asp-for="@Model.Details.Quantity" class="col-xs-2 input-sm" />
+                </dd>
+        </dl>
+         <input type="hidden" asp-for="@Model.Item.ItemId" />
+            <input type="hidden" asp-for="@Model.Lists.ListId" />
+            <br>
+            <a asp-action="Index" id="cancelbtn" class="btn btn-primary">Cancel</a>
+            &nbsp;
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </form>
+    </div>
+ 
+</div>
+
+@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+            alert('@TempData["msg"]')
+        </script>
+    }
+}

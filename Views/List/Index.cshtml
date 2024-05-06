@@ -1,0 +1,83 @@
+﻿@model IEnumerable<List>
+@section heads{
+    <link rel="stylesheet" href="~/Content/CreateList.css" />
+   
+}
+<navbar>
+    <div id="header">
+        <div class="waviy">
+            <span style="--i:1">S</span>
+            <span style="--i:2">T</span>
+            <span style="--i:3">A</span>
+            <span style="--i:4">P</span>
+            <span style="--i:5">L</span>
+            <span style="--i:6">E</span>
+            <span style="--i:7">I</span>
+            <span style="--i:8">T</span>
+            <span style="--i:8">.</span>
+            <a asp-action="Index" asp-controller="Login" style="text-transform: uppercase; padding-top: 20px; color: #fff;" class="pull-right"><b>Logout</b></a>
+        </div>
+
+
+    </div>
+    <div class="underline-title"></div>
+    <ul id="nav" class="nav nav-tabs">
+        <li >
+            <a asp-action="Index" asp-controller="Home">Home</a>
+        </li>
+        <li class="active">
+            <a asp-action="Index" class="active" asp-controller="List"><b>Lists</b></a>
+        </li>
+        <li>
+            <a asp-action="Index" asp-controller="Group">Groups</a>
+        </li>
+
+    </ul>
+</navbar>
+<br>
+<div class="container-fluid">
+    <p>
+        <a asp-action="CreateList" class="btn btn-primary pull-right">Create New</a>
+    </p>
+    <br />
+    <br />
+<table class="table table-condensed table-hover table-striped">
+    <thead>
+        <tr>
+           <th>
+                Name
+            </th>
+            <th>
+                Date of Creation
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(a=>v.ListName)
+                </td>
+                <td>
+                    @Html.DisplayFor(a=>v.CreatedDateTime)
+                </td>
+             
+                <td>
+                    <span class="action-b">
+                            <a asp-action="Edit" asp-route-id=@v.ListId asp-controller="List" data-toggle="tooltip" data-placement="left" title="Edit"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a asp-action="Delete" asp-route-id=@v.ListId asp-controller="List" data-toggle="tooltip" data-placement="right" title="Delete"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a asp-action="Listdetails" asp-route-id=@v.ListId asp-controller="List" data-toggle="tooltip" data-placement="left" title="View"><i class="glyphicon glyphicon-option-vertical"></i></a>
+                    </span>
+                        
+                </td>
+                  
+            </tr>
+
+        }
+    </tbody>
+</table>
+</div>
+
+
